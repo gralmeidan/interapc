@@ -17,7 +17,6 @@
 			<StarterQuestion
 				{question}
 				onSelect={(selected) => {
-					console.log('selected', question, i);
 					questions[i] = { ...question, selected };
 				}}
 			/>
