@@ -17,6 +17,6 @@ export default {
 
 	plugins: [aspectRatio, daisyui],
 	daisyui: {
-		themes: ['winter']
+		themes: ['winter', 'night']
 	}
 } as Config & { daisyui: DaisyUIConfig };

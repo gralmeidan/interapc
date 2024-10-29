@@ -29,14 +29,20 @@
 	];
 </script>
 
-<header class="navbar sticky top-0 block bg-primary pb-0 text-primary-content">
+<header class="navbar sticky top-0 block bg-neutral pb-0 text-neutral-content">
 	<div class="flex items-center px-3">
 		<span class="text-xl font-bold">InteraPC</span>
 		<div class="grow px-14">
 			<label
-				class="input mx-auto flex h-fit w-full max-w-screen-lg items-center bg-primary-content py-2 text-base-content"
+				class="input mx-auto flex h-fit w-full max-w-screen-lg items-center bg-neutral-content py-2 text-neutral"
 			>
-				<input type="text" class="grow" placeholder="Pesquise seu produto" />
+				<input
+					type="text"
+					class="grow placeholder:text-neutral placeholder:opacity-40"
+					placeholder="Pesquise seu produto"
+					autocorrect="off"
+					spellcheck="false"
+				/>
 				<Magnify />
 			</label>
 		</div>
