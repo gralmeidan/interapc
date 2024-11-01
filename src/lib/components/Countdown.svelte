@@ -21,12 +21,12 @@
 		timeRemaining = { days, hours, minutes, seconds };
 	}
 
-	let interval: number;
+	let interval: unknown;
 
 	onMount(() => {
 		updateCountdown();
 		interval = setInterval(updateCountdown, 1000);
-		return () => clearInterval(interval); // Cleanup on component destroy
+		return () => clearInterval(interval as number); // Cleanup on component destroy
 	});
 </script>
 

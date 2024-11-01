@@ -1,9 +1,15 @@
 import type { Category, Price, Product } from '$lib/types';
 import raw from './products.mock.json';
 
+let highestPrice = 0;
+
 const fixPrice = (price: Price) => {
 	if (price.endsAt) {
 		price.endsAt = new Date(price.endsAt);
+	}
+
+	if (price.amount > highestPrice) {
+		highestPrice = price.amount;
 	}
 };
 
@@ -23,5 +29,6 @@ for (const element of raw) {
 
 export const productsMock = {
 	all: raw as Product[],
-	cat: map
+	cat: map,
+	highestPrice
 };

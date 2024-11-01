@@ -9,11 +9,11 @@
 		className
 	}: {
 		product: Product;
-		className: string;
+		className?: string;
 	} = $props();
 </script>
 
-<div class="card relative w-80 overflow-hidden shadow-xl {className}">
+<div class="card relative w-80 overflow-hidden shadow-xl {className ?? ''}">
 	{#if product.displayPrice.endsAt}
 		<div
 			class="absolute left-0 top-0 flex w-full justify-between rounded-b-md rounded-tl-box rounded-tr-box bg-neutral px-4 py-1 text-neutral-content"

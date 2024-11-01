@@ -1,0 +1,53 @@
+export const categoryMap = {
+	'MLB-NOTEBOOKS': 'Notebooks',
+	'MLB-SCHOOL_AND_OFFICE_PAPERS': 'Papelaria',
+	'MLB-HEADPHONES': 'Headphones',
+	'MLB-LAPTOP_KEYBOARDS': 'Teclados para Notebook',
+	'MLB-PROJECTORS': 'Projetores',
+	'MLB-HARD_DRIVES_AND_SSDS_ENCLOSURES': 'Armazenamento',
+	'MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS': 'Cabos de Áudio e Vídeo',
+	'MLB-TONERS': 'Toners',
+	'MLB-NETWORK_CABLE_ADAPTERS': 'Adaptadores de Rede',
+	'MLB-MEMORY_READERS': 'Leitores de Memória',
+	'MLB-3D_PRINTER_FILAMENTS': 'Filamentos para Impressora 3D',
+	'MLB-UPS_BATTERIES': 'Baterias para Nobreak',
+	'MLB-SCREEN_CLEANERS': 'Limpa Telas',
+	'MLB-PRINTER_INKS': 'Cartuchos de Tinta',
+	'MLB-COMPUTER_MICE': 'Mouses',
+	'MLB-MOUSE_PADS': 'Mouse Pads',
+	'MLB-LAPTOP_CHARGERS': 'Carregadores para Notebook',
+	'MLB-NETWORK_CABLES': 'Cabos de Rede',
+	'MLB-ALL_IN_ONE_COMPUTERS': 'Computadores All in One',
+	'MLB-KEYBOARD_AND_MOUSE_KITS': 'Kits Teclado e Mouse',
+	'MLB-ROUTERS_AND_WIRELESS_SYSTEMS': 'Roteadores e Sistemas Wireless',
+	'MLB-COMPUTER_PROCESSORS': 'Processadores',
+	'MLB-COMPUTER_MOTHERBOARDS': 'Placas Mãe',
+	'MLB-DESKTOP_COMPUTER_KITS': 'Kits para Computador',
+	'MLB-GRAPHICS_CARDS': 'Placas de Vídeo',
+	'MLB-RAM_MEMORY_MODULES': 'Memórias RAM',
+	'MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS': 'Coolers e Fans para Computador',
+	'MLB-FINGERPRINT_READERS': 'Leitores de Impressão Digital',
+	'MLB-COMPUTER_EQUIPMENT_AND_REPLACEMENTS': 'Equipamentos e Peças para Computador',
+	'MLB-NETWORK_CARDS': 'Placas de Rede',
+	'MLB-HARD_DRIVES_AND_SSDS': 'HDs e SSDs',
+	'MLB-DATA_CABLES_AND_ADAPTERS': 'Cabos e Adaptadores de Dados',
+	'MLB-LAPTOP_REPLACEMENT_INTERNAL_SPEAKERS': 'Alto Falantes Internos para Notebook',
+	'MLB-LAPTOP_SCREENS': 'Telas para Notebook',
+	'MLB-PC_THERMAL_COMPOUND_PASTES': 'Pastas Térmicas para PC',
+	'MLB-MOLEX_CABLES': 'Cabos Molex',
+	'MLB-DESKTOP_COMPUTER_POWER_SUPPLIES': 'Fontes de Alimentação para Computador',
+	'MLB-DESKTOP_COMPUTER_CASES': 'Gabinetes para Computador',
+	'MLB-CPU_HOLDERS': 'Suportes para CPU',
+	'MLB-COMPUTER_MONITORS': 'Monitores',
+	'MLB-MONITOR_POWER_SUPPLIES': 'Fontes de Alimentação para Monitor',
+	'MLB-TV_AND_MONITOR_MOUNTS': 'Suportes para TV e Monitor',
+	'MLB-VIDEO_CAPTURE_DEVICES': 'Dispositivos de Captura de Vídeo',
+	'MLB-PENDRIVES': 'Pen Drives',
+	'MLB-HARD_DRIVES_AND_SSDS_CADDIES': 'Caddies para HDs e SSDs'
+} as const;
+
+export type Category = keyof typeof categoryMap;
+
+export function getCategoryName(category: Category): string {
+	return categoryMap[category];
+}
