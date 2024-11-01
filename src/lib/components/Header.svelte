@@ -16,22 +16,22 @@
 		},
 		{
 			label: 'Hardware',
-			href: 'shop'
+			href: 'shop?q=Hardware'
 		},
 		{
 			label: 'Pré-Montados',
-			href: 'shop'
+			href: 'shop?q=Pré-Montados'
 		},
 		{
 			label: 'Monitores',
-			href: 'shop'
+			href: 'shop?q=Monitores'
 		}
 	];
 </script>
 
 <header class="navbar sticky top-0 z-50 block bg-neutral pb-0 text-neutral-content">
 	<div class="flex items-center px-3">
-		<span class="text-xl font-bold">InteraPC</span>
+		<a class="text-xl font-bold" href="/">InteraPC</a>
 		<div class="grow px-14">
 			<label
 				class="input mx-auto flex h-fit w-full max-w-screen-lg items-center bg-neutral-content py-2 text-neutral"
@@ -42,6 +42,11 @@
 					placeholder="Pesquise seu produto"
 					autocorrect="off"
 					spellcheck="false"
+					onkeydown={(e) => {
+						if (e.key === 'Enter') {
+							window.location.href = `/shop?q=${(e.target as HTMLInputElement)?.value}`;
+						}
+					}}
 				/>
 				<Magnify />
 			</label>

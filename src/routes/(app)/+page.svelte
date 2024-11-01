@@ -12,6 +12,7 @@
 <main class="container mx-auto p-6 py-10">
 	<ProductCarousel
 		title="Destaques"
+		id="ofertas"
 		subtitle="Confira as melhores ofertas que nosso time selecionou para você!"
 		products={productsMock.all.slice(0, 12)}
 	/>

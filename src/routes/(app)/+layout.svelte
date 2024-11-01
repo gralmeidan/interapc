@@ -9,6 +9,6 @@
 
 <style>
 	root {
-		@apply bg-base-100;
+		@apply scroll-smooth bg-base-100;
 	}
 </style>
