@@ -29,7 +29,7 @@
 	];
 </script>
 
-<header class="navbar sticky top-0 block bg-neutral pb-0 text-neutral-content">
+<header class="navbar sticky top-0 z-50 block bg-neutral pb-0 text-neutral-content">
 	<div class="flex items-center px-3">
 		<span class="text-xl font-bold">InteraPC</span>
 		<div class="grow px-14">

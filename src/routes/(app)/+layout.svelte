@@ -6,3 +6,9 @@
 
 <Header />
 {@render children()}
+
+<style>
+	root {
+		@apply bg-base-100;
+	}
+</style>
