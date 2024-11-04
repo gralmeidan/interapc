@@ -3,9 +3,16 @@ import raw from './products.mock.json';
 
 let highestPrice = 0;
 
+function randomNum(min: number, max: number) {
+	return min + Math.random() * (max - min);
+}
+
 const fixPrice = (price: Price) => {
 	if (price.endsAt) {
-		price.endsAt = new Date(price.endsAt);
+		const hours = 60 * 60 * 1000;
+		const expiresIn = randomNum(2 * hours, 12 * 24 * hours);
+
+		price.endsAt = new Date(Date.now() + expiresIn);
 	}
 
 	if (price.amount > highestPrice) {

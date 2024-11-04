@@ -3,8 +3,6 @@
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import { productsMock } from '$lib/mocks';
 	import ProductCarousel from './components/ProductCarousel.svelte';
-
-	console.log(productsMock.cat['MLB-GRAPHICS_CARDS']);
 </script>
 
 <img src={AmdPromo} class="h-96 w-full" alt="" />

@@ -1,5 +1,5 @@
 import { Result, Root } from './dump.type';
-import { Product, Price, Seller, Category } from '../src/lib/types/product.types';
+import { Product, Price, Seller, Category } from '../src/lib/types';
 import * as fs from 'fs/promises';
 
 const json: Root[] = await Bun.file('./dump.json').json();
