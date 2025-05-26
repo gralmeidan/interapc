@@ -5,7 +5,7 @@
 	};
 </script>
 
-<script>
+<script lang="ts">
 	import FilterCard from './FilterCard.svelte';
 
 	let { title, options }: FilterCheckboxesProps = $props();
