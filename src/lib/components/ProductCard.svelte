@@ -63,4 +63,23 @@
 		line-clamp: 2;
 		-webkit-box-orient: vertical;
 	}
+
+	@media (max-width: 640px) {
+		div.w-80 {
+			width: 100%;
+		}
+
+		img {
+			background-size: contain;
+			width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+			padding-top: 2rem;
+		}
+
+		._line-clamp-title {
+			-webkit-line-clamp: 3;
+			line-clamp: 3;
+		}
+	}
 </style>

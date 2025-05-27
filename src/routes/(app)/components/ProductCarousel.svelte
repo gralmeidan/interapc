@@ -21,3 +21,18 @@
 		{/each}
 	</div>
 </section>
+
+<style>
+	@media (max-width: 640px) {
+		div.carousel {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		div.carousel {
+			overflow-x: scroll;
+			scrollbar-width: thin;
+			scrollbar-color: #888 #f1f1f1;
+		}
+	}
+</style>

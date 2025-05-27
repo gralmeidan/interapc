@@ -1,13 +1,17 @@
 <script lang="ts">
-	import AmdPromo from '$lib/assets/img/amd-promo.jpg';
+	import AmdPromoDesktop from '$lib/assets/img/amd-promo-desktop.jpg';
+	import AmdPromoTablet from '$lib/assets/img/amd-promo-tablet.jpg';
+	import AmdPromoMobile from '$lib/assets/img/amd-promo-mobile.jpg';
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import { productsMock } from '$lib/mocks';
 	import ProductCarousel from './components/ProductCarousel.svelte';
 </script>
 
-<img src={AmdPromo} class="h-96 w-full" alt="" />
+<img src={AmdPromoDesktop} class="desktop h-96 w-full" alt="" />
+<img src={AmdPromoTablet} class="tablet h-96 w-full" alt="" />
+<img src={AmdPromoMobile} class="mobile h-96 w-full" alt="" />
 
-<main class="container mx-auto p-6 py-10">
+<main class="carousel-container mx-auto p-6 py-10">
 	<ProductCarousel
 		title="Destaques"
 		id="ofertas"
@@ -36,3 +40,44 @@
 		</div>
 	</section>
 </main>
+
+<style>
+	.desktop,
+	.tablet {
+		display: none;
+	}
+
+	.mobile {
+		display: block;
+	}
+
+	.carousel-container {
+		width: 100%;
+	}
+
+	@media (min-width: 512px) {
+		.carousel-container {
+			max-width: 1280px;
+		}
+
+		.tablet {
+			display: block;
+		}
+
+		.mobile,
+		.desktop {
+			display: none;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.desktop {
+			display: block;
+		}
+
+		.mobile,
+		.tablet {
+			display: none;
+		}
+	}
+</style>
