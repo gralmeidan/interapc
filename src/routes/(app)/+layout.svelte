@@ -1,13 +1,15 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
+	import Header from '$lib/components/Header/Header.svelte';
 
 	let { children } = $props();
 </script>
 
-<Header />
-{@render children()}
+<div class="mobile-nav-key">
+	<Header />
+	{@render children()}
+</div>
 
-<style>
+<style lang="postcss">
 	root {
 		@apply scroll-smooth bg-base-100;
 	}

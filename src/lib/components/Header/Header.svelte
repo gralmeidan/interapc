@@ -1,9 +1,10 @@
 <script lang="ts">
-	import Magnify from '~icons/mdi/magnify';
 	import AccountCircle from '~icons/mdi/account-circle';
 	import Cart from '~icons/mdi/cart';
 	import HelpCircle from '~icons/mdi/help-circle';
 	import Menu from '~icons/mdi/menu';
+	import SearchInput from './SearchInput.svelte';
+	import MobileNav from './MobileNav.svelte';
 
 	const LINKS = [
 		{
@@ -35,23 +36,7 @@
 		<div class="flex items-center px-3">
 			<a class="text-xl font-bold" href="/">InteraPC</a>
 			<div class="grow px-14">
-				<label
-					class="input mx-auto flex h-fit w-full max-w-screen-lg items-center bg-neutral-content py-2 text-neutral"
-				>
-					<input
-						type="text"
-						class="grow placeholder:text-neutral placeholder:opacity-40"
-						placeholder="Pesquise seu produto"
-						autocorrect="off"
-						spellcheck="false"
-						onkeydown={(e) => {
-							if (e.key === 'Enter') {
-								window.location.href = `/shop?q=${(e.target as HTMLInputElement)?.value}`;
-							}
-						}}
-					/>
-					<Magnify />
-				</label>
+				<SearchInput />
 			</div>
 			<div class="flex items-center gap-4">
 				<div class="flex grow items-center gap-1 text-sm">
@@ -75,12 +60,38 @@
 			</ul>
 		</nav>
 	</div>
+	<!-- Mobile -->
+	<div class="mobile">
+		<div class="flex items-center justify-between px-3">
+			<div class="flex gap-4">
+				<AccountCircle class="text-3xl" />
+				<Cart class="text-3xl" />
+			</div>
+			<a class="text-xl font-bold" href="/">InteraPC</a>
+			<MobileNav items={LINKS} />
+		</div>
+		<div class="p-4">
+			<SearchInput />
+		</div>
+	</div>
 </header>
 
 <style>
-	@media (max-width: 640px) {
+	.mobile {
+		display: none;
+	}
+
+	.desktop {
+		display: block;
+	}
+
+	@media (max-width: 724px) {
 		.desktop {
 			display: none;
+		}
+
+		.mobile {
+			display: block;
 		}
 	}
 </style>
