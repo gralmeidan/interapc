@@ -29,7 +29,7 @@
 				}}
 			/>
 		{/each}
-		<div class="absolute bottom-0 right-0 p-6">
+		<div class="continue-button absolute bottom-0 right-0 p-6">
 			<button
 				class="btn btn-primary font-bold"
 				onclick={() => (window.location.href = '/custom/shop')}
@@ -44,5 +44,25 @@
 <style>
 	._bg {
 		background-image: url('$lib/assets/img/build-a-pc-background.jpg');
+	}
+
+	@media (max-width: 768px) {
+		._bg {
+			display: none;
+		}
+
+		main {
+			width: 100%;
+			padding: 1rem;
+			padding-bottom: 60px;
+		}
+
+		.continue-button {
+			left: 0;
+		}
+
+		.continue-button button {
+			width: 100%;
+		}
 	}
 </style>

@@ -80,8 +80,11 @@
 </script>
 
 <main class="container mx-auto">
-	<section class="card my-16 overflow-hidden shadow-md">
-		<div role="tablist" class="tabs tabs-bordered">
+	<section
+		class="card my-16
+	 shadow-md"
+	>
+		<div role="tablist" class="tabs tabs-bordered overflow-x-auto overflow-y-hidden">
 			{#each tabs as tab, i}
 				<span
 					role="tab"
@@ -100,20 +103,22 @@
 				{selected.title}
 			</h1>
 
-			<div class="flex">
+			<div class="details flex">
 				<img src={selected.thumbnail} class="w-1/4" alt="" />
 
 				<div class="mx-12 w-2/4">
 					<div class="mx-12">
 						{#each importantDetails as detail}
-							<div class="flex w-full items-center gap-2 text-xl">
+							<div class="info-item flex w-full items-center gap-2 text-xl">
 								{#if detail.info || detail.warn}
 									<abbr title={detail.info ?? detail.warn}>
 										<HelpCircle class={detail.info ? 'text-info' : 'text-warning'} />
 									</abbr>
 								{/if}
-								<p class="w-1/4 font-semibold">{detail.title}</p>
-								<p class="w-3/4 text-end">{detail.label}</p>
+								<div class="flex w-full items-center justify-between">
+									<p class="w-1/4 font-semibold">{detail.title}</p>
+									<p class="w-3/4 text-end">{detail.label}</p>
+								</div>
 							</div>
 						{/each}
 					</div>
@@ -162,5 +167,33 @@
 <style>
 	._selected {
 		@apply cursor-default border-primary text-primary;
+	}
+
+	@media (max-width: 1024px) {
+		.info-item > div {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.info-item > div p {
+			width: 100%;
+		}
+
+		.info-item > div > p:last-child {
+			text-align: left;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.details {
+			flex-direction: column;
+			gap: 2rem;
+		}
+
+		.details > * {
+			width: 100%;
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 </style>
