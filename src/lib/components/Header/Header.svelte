@@ -28,6 +28,45 @@
 			href: 'shop?q=Monitores'
 		}
 	];
+
+	const SUB_MENU_LINKS = [
+		{
+			label: 'Processadores',
+			href: 'shop?q=Processadores'
+		},
+		{
+			label: 'Placas de Vídeo',
+			href: 'shop?q=Placas de Vídeo'
+		},
+		{
+			label: 'Memórias RAM',
+			href: 'shop?q=Memórias RAM'
+		},
+		{
+			label: 'Armazenamento',
+			href: 'shop?q=Armazenamento'
+		},
+		{
+			label: 'Placas Mãe',
+			href: 'shop?q=Placas Mãe'
+		},
+		{
+			label: 'Gabinetes',
+			href: 'shop?q=Gabinete'
+		},
+		{
+			label: 'Fontes',
+			href: 'shop?q=Fonte'
+		},
+		{
+			label: 'Coolers',
+			href: 'shop?q=Cooler'
+		},
+		{
+			label: 'Periféricos',
+			href: 'shop?q=Periférico'
+		}
+	];
 </script>
 
 <header class="navbar sticky top-0 z-50 block bg-neutral pb-0 text-neutral-content">
@@ -49,8 +88,15 @@
 		</div>
 		<nav>
 			<ul class="menu menu-horizontal">
-				<li>
+				<li class="custom-dropdown relative">
 					<button class="bg-black bg-opacity-10">Departamentos <Menu /></button>
+					<ul class="custom-dropdown-content rounded-b-md bg-neutral">
+						{#each SUB_MENU_LINKS as link}
+							<li>
+								<a href={link.href} class="bg-black bg-opacity-10">{link.label}</a>
+							</li>
+						{/each}
+					</ul>
 				</li>
 				{#each LINKS as link}
 					<li>
@@ -82,6 +128,19 @@
 	}
 
 	.desktop {
+		display: block;
+	}
+
+	.custom-dropdown-content {
+		display: none;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.custom-dropdown:hover .custom-dropdown-content {
 		display: block;
 	}
 
