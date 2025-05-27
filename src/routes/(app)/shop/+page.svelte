@@ -9,8 +9,8 @@
 	});
 </script>
 
-<main class="container mx-auto">
-	<h1 class="mb-10 mt-16 text-3xl font-bold">
+<main class="container mx-auto px-4">
+	<h1 class="mb-10 mt-16 text-xl font-bold md:text-3xl">
 		Mostrando resultados para "{search}"
 	</h1>
 	<ShopGrid />

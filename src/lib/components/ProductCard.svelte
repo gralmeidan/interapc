@@ -30,7 +30,12 @@
 			{product.displayPrice.seller}
 		</div>
 	{/if}
-	<img src={product.thumbnail} class="h-56 w-full bg-cover" aria-hidden="true" alt="" />
+	<img
+		src={product.thumbnail}
+		class="mx-auto h-56 w-fit bg-contain pt-8"
+		aria-hidden="true"
+		alt=""
+	/>
 	<div class="flex h-full flex-col justify-between p-4 pt-6">
 		<div>
 			{#if product.displayPrice.originalPrice}
@@ -67,14 +72,6 @@
 	@media (max-width: 640px) {
 		div.w-80 {
 			width: 100%;
-		}
-
-		img {
-			background-size: contain;
-			width: fit-content;
-			margin-left: auto;
-			margin-right: auto;
-			padding-top: 2rem;
 		}
 
 		._line-clamp-title {

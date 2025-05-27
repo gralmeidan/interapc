@@ -89,7 +89,7 @@
 		</div>
 		<div class="grid-sp grid grid-cols-4 gap-6">
 			{#each productsList.slice(0, pageSize) as product}
-				<ProductCard {product} />
+				<ProductCard {product} className="!w-full" />
 			{/each}
 		</div>
 		<div>
@@ -106,3 +106,29 @@
 		</div>
 	</section>
 </div>
+
+<style>
+	@media (max-width: 1536px) {
+		.grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 1280px) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 1024px) {
+		aside {
+			display: none;
+		}
+	}
+
+	@media (max-width: 700px) {
+		.grid {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+	}
+</style>

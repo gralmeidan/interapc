@@ -33,9 +33,9 @@
 	/>
 	<section class="my-4">
 		<h1 class="text-2xl font-bold">Outras ofertas imperdíveis</h1>
-		<div class="flex flex-wrap justify-between gap-4">
-			{#each productsMock.all.slice(12, 12 + 16) as product}
-				<ProductCard {product} className="my-2" />
+		<div class="flex flex-wrap gap-4">
+			{#each productsMock.all.slice(12, 12 + 15) as product}
+				<ProductCard {product} className="flex-grow basis-80 max-w-full !w-auto" />
 			{/each}
 		</div>
 	</section>
