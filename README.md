@@ -1,38 +1,40 @@
-# create-svelte
+# Svelte App README
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+### Pre-Requisitos
 
-## Creating a project
+Node (v20.16.0 ou maior) ou Bun (v1.2.3 ou maior)
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Instalação
+
+1. Clone o repositório:
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/gralmeidan/interapc.git
+cd interapc
 ```
 
-## Developing
+2. Instale as dependências:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+npm install
+```
+
+ou
+
+```bash
+bun install
+```
+
+### Rodando a aplicação
+
+Inicie a aplicação:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+ou
 
 ```bash
-npm run build
+bun dev
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
