@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { filters } from '$lib/state';
 	import Magnify from '~icons/mdi/magnify';
 </script>
 
@@ -13,7 +15,11 @@
 		spellcheck="false"
 		onkeydown={(e) => {
 			if (e.key === 'Enter') {
-				window.location.href = `/shop?q=${(e.target as HTMLInputElement)?.value}`;
+				if (!window.location.pathname.includes('shop')) {
+					goto('/shop', {});
+				}
+
+				filters.query = (e.target as HTMLInputElement)?.value.trim();
 			}
 		}}
 	/>

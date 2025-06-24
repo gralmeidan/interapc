@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import { productsMock } from '$lib/mocks';
+	import { filters, FiltersState } from '$lib/state';
 	import type { Product } from '$lib/types';
 	import FilterCheckboxes, {
 		type FilterCheckboxesProps
@@ -9,46 +10,122 @@
 
 	let { productsList = productsMock.all }: { productsList?: Product[] } = $props();
 
-	const filters: FilterCheckboxesProps[] = [
+	function toggleListHandler(
+		key: {
+			[K in keyof FiltersState]: FiltersState[K] extends string[] ? K : never;
+		}[keyof FiltersState]
+	) {
+		return (name: string, checked: boolean) => {
+			const noName = filters[key].filter((el) => el !== name.toLowerCase());
+
+			if (checked) {
+				filters[key] = [...noName, name.toLowerCase()];
+			} else {
+				filters[key] = noName;
+			}
+		};
+	}
+
+	const filterOptions: FilterCheckboxesProps[] = [
 		{
 			title: 'Vendido por',
-			options: ['Kabum', 'Terabyte', 'Mercado Livre', 'Pichau', 'Amazon']
+			options: ['Kabum', 'Terabyte', 'Mercado Livre', 'Pichau', 'Amazon'],
+			key: 'seller'
 		},
 		{
 			title: 'Memória',
-			options: ['2GB', '4GB', '8GB', '16GB', '32GB', '64GB', '128GB', '256GB', '512GB', '1TB']
+			options: ['2GB', '4GB', '8GB', '16GB', '32GB', '64GB', '128GB', '256GB', '512GB', '1TB'],
+			key: 'mem'
 		},
 		{
 			title: 'Marcas',
-			options: ['Asus', 'MSI', 'Gigabyte', 'EVGA', 'Galax', 'Zotac', 'PNY', 'Colorful']
+			options: ['Asus', 'MSI', 'Gigabyte', 'EVGA', 'Galax', 'Zotac', 'PNY', 'Colorful'],
+			key: 'brand'
 		},
 		{
 			title: 'Plataforma',
-			options: ['AMD', 'Intel']
+			options: ['AMD', 'Intel'],
+			key: 'platform'
 		},
 		{
 			title: 'Tipo de memória',
-			options: ['DDR3', 'DDR4', 'DDR5', 'GDDR5', 'GDDR6', 'GDDR6X']
+			options: ['DDR3', 'DDR4', 'DDR5', 'GDDR5', 'GDDR6', 'GDDR6X'],
+			key: 'memType'
 		},
 		{
 			title: 'Armazenamento',
-			options: ['SSD', 'HDD', 'NVMe', 'M.2']
+			options: ['SSD', 'HDD', 'NVMe', 'M.2'],
+			key: 'storageType'
 		},
 		{
 			title: 'Socket',
-			options: ['AM4', 'LGA1200', 'LGA1151', 'TR4', 'LGA2066']
+			options: ['AM4', 'LGA1200', 'LGA1151', 'TR4', 'LGA2066'],
+			key: 'socket'
 		},
 		{
 			title: 'Frequência',
-			options: ['2133MHz', '2400MHz', '2666MHz', '3000MHz', '3200MHz', '3600MHz', '4000MHz']
+			options: ['2133MHz', '2400MHz', '2666MHz', '3000MHz', '3200MHz', '3600MHz', '4000MHz'],
+			key: 'frequency'
 		}
 	];
 
 	const pageSize = 16;
 
+	function noMatchList(name: string, list: string[]): boolean {
+		return list.length > 0 && !list.some((el) => name.includes(el.toLowerCase()));
+	}
+
+	let results = $derived.by(() => {
+		const results: Product[] = [];
+
+		for (const el of productsList) {
+			const name = el.title.toLowerCase();
+
+			if (filters.query && !name.includes(filters.query.toLowerCase())) {
+				continue;
+			}
+
+			if (noMatchList(el.displayPrice.seller.toLowerCase(), filters.seller)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.mem)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.brand)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.platform)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.memType)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.storageType)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.socket)) {
+				continue;
+			}
+
+			if (noMatchList(name, filters.frequency)) {
+				continue;
+			}
+
+			results.push(el);
+		}
+
+		return results;
+	});
+
 	let pages = $derived.by(() => {
 		const cur = 1;
-		const total = Math.ceil(productsList.length / pageSize);
+		const total = Math.ceil(results.length / pageSize);
 
 		if (total <= 5) {
 			return Array.from({ length: total }, (_, i) => i + 1);
@@ -69,14 +146,21 @@
 <div class="flex items-start gap-4">
 	<aside class="flex w-48 flex-col gap-4">
 		<h2 class="text-xl">Filtros</h2>
-		<FilterMinMax title="Preço" min={0} max={productsMock.highestPrice} />
-		{#each filters as filter}
+		<button
+			onclick={() => {
+				filters.reset();
+			}}
+			class="px-0 text-primary"
+		>
+			Limpar filtros
+		</button>
+		{#each filterOptions as filter}
 			<FilterCheckboxes {...filter} />
 		{/each}
 	</aside>
 	<section>
 		<div class="my-2 flex items-end justify-between">
-			<p class="text-primary">Mostrando 1-{pageSize} de {productsList.length} resultados</p>
+			<p class="text-primary">Mostrando 1-{pageSize} de {results.length} resultados</p>
 			<label class="label gap-4">
 				<span class="label-text">Ordenar por: </span>
 				<select class="select" placeholder="Ordenar por">
@@ -88,7 +172,7 @@
 			</label>
 		</div>
 		<div class="grid-sp grid grid-cols-4 gap-6">
-			{#each productsList.slice(0, pageSize) as product}
+			{#each results.slice(0, pageSize) as product}
 				<ProductCard {product} className="!w-full" />
 			{/each}
 		</div>

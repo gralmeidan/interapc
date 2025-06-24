@@ -3,6 +3,8 @@
 	import ShopGrid from '$lib/components/ShopGrid/ShopGrid.svelte';
 	import { productsMock } from '$lib/mocks';
 	import { priceFormat } from '$lib/utils';
+	import { onMount } from 'svelte';
+	import { filters } from '$lib/state';
 
 	const tabs = [
 		'Placa Mãe',
@@ -77,6 +79,10 @@
 			label: 'Gigabyte'
 		}
 	];
+
+	onMount(() => {
+		filters.retrieveUrl();
+	});
 </script>
 
 <main class="container mx-auto">
@@ -160,6 +166,11 @@
 			</div>
 		</div>
 	</section>
+	{#if filters.query}
+		<h1 class="mb-6 text-lg font-bold md:text-3xl">
+			Mostrando resultados para "{filters.query}"
+		</h1>
+	{/if}
 	<ShopGrid productsList={productsMock.cat['MLB-COMPUTER_MOTHERBOARDS']} />
 	<div class="h-96"></div>
 </main>
