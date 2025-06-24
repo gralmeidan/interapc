@@ -1,0 +1,1 @@
+import{m as e,l as t,o as c}from"./runtime.DM6RIPZl.js";function u(o){throw new Error("lifecycle_outside_component")}function r(o){e===null&&u(),e.l!==null?i(e).m.push(o):t(()=>{const n=c(o);if(typeof n=="function")return n})}function i(o){var n=o.l;return n.u??(n.u={a:[],b:[],m:[]})}export{r as o};
