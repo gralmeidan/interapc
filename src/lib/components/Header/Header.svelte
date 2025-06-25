@@ -5,6 +5,8 @@
 	import Menu from '~icons/mdi/menu';
 	import SearchInput from './SearchInput.svelte';
 	import MobileNav from './MobileNav.svelte';
+	import { filters } from '$lib/state';
+	import { goto } from '$app/navigation';
 
 	const LINKS = [
 		{
@@ -17,56 +19,76 @@
 		},
 		{
 			label: 'Hardware',
-			href: 'shop?q=Hardware'
+			href: 'shop',
+			query: 'Hardware'
 		},
 		{
 			label: 'Pré-Montados',
-			href: 'shop?q=Pré-Montados'
+			href: 'shop',
+			query: 'Computador'
 		},
 		{
 			label: 'Monitores',
-			href: 'shop?q=Monitores'
+			href: 'shop',
+			query: 'Monitor'
 		}
 	];
 
 	const SUB_MENU_LINKS = [
 		{
 			label: 'Processadores',
-			href: 'shop?q=Processadores'
+			href: 'shop',
+			query: 'Processadores'
 		},
 		{
 			label: 'Placas de Vídeo',
-			href: 'shop?q=Placas de Vídeo'
+			href: 'shop',
+			query: 'GPU'
 		},
 		{
 			label: 'Memórias RAM',
-			href: 'shop?q=Memórias RAM'
+			href: 'shop',
+			query: 'RAM'
 		},
 		{
 			label: 'Armazenamento',
-			href: 'shop?q=Armazenamento'
+			href: 'shop',
+			query: 'Armazenamento'
 		},
 		{
 			label: 'Placas Mãe',
-			href: 'shop?q=Placas Mãe'
+			href: 'shop',
+			query: 'Placa Mãe'
 		},
 		{
 			label: 'Gabinetes',
-			href: 'shop?q=Gabinete'
+			href: 'shop',
+			query: 'Gabinete'
 		},
 		{
 			label: 'Fontes',
-			href: 'shop?q=Fonte'
+			href: 'shop',
+			query: 'Fonte'
 		},
 		{
 			label: 'Coolers',
-			href: 'shop?q=Cooler'
+			href: 'shop',
+			query: 'Cooler'
 		},
 		{
 			label: 'Periféricos',
-			href: 'shop?q=Periférico'
+			href: 'shop',
+			query: 'Periférico'
 		}
 	];
+
+	function onClickLink(event: MouseEvent, link: (typeof LINKS)[0]) {
+		if (link.query) {
+			filters.query = link.query;
+			goto(`/${link.href}`, {});
+			event.preventDefault();
+		}
+	}
 </script>
 
 <header class="navbar sticky top-0 z-50 block bg-neutral pb-0 text-neutral-content">
@@ -93,14 +115,18 @@
 					<ul class="custom-dropdown-content rounded-b-md bg-neutral">
 						{#each SUB_MENU_LINKS as link}
 							<li>
-								<a href={link.href} class="bg-black bg-opacity-10">{link.label}</a>
+								<a
+									href={link.href}
+									class="bg-black bg-opacity-10"
+									onclick={(event) => onClickLink(event, link)}>{link.label}</a
+								>
 							</li>
 						{/each}
 					</ul>
 				</li>
 				{#each LINKS as link}
 					<li>
-						<a href={link.href}>{link.label}</a>
+						<a href={link.href} onclick={(event) => onClickLink(event, link)}>{link.label}</a>
 					</li>
 				{/each}
 			</ul>
